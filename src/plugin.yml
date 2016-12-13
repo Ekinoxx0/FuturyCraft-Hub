@@ -1,0 +1,6 @@
+name: FcHub
+version: 0.0.1
+author: loucass003
+description: FcHub
+main: fc.hub.Main
+depend: [FcApi]
