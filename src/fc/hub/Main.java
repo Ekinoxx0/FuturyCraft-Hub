@@ -19,7 +19,6 @@ public class Main extends JavaPlugin
         instance = this;
         api = API.getInstance();
         api.useQueueManager(false);
-
     }
 
     @Override

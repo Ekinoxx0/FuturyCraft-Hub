@@ -22,7 +22,7 @@ public class PlayerEvents implements Listener
 
     public Main main;
     public BossBar bossBar;
-    public long barBroadcaster = -1L;
+    public int barBroadcaster = -1;
     public List<String> barMessages;
     public int currMessage;
 
@@ -34,7 +34,7 @@ public class PlayerEvents implements Listener
         barMessages.add("Plop");
         barMessages.add("Bijour");
         barMessages.add("Ca va ?");
-        bossBar = Bukkit.createBossBar("Test", BarColor.WHITE, BarStyle.SOLID);
+        bossBar = Bukkit.createBossBar(barMessages.get(0), BarColor.WHITE, BarStyle.SOLID);
         bossBar.setVisible(true);
         Bukkit.getOnlinePlayers().stream().filter(p -> !bossBar.getPlayers().contains(p)).forEach(p -> bossBar.addPlayer(p));
     }
@@ -48,9 +48,9 @@ public class PlayerEvents implements Listener
         p.setWalkSpeed(0.3F);
         bossBar.addPlayer(p);
 
-        if(Bukkit.getOnlinePlayers().size() >= 0 && barBroadcaster == -1L)
+        if(Bukkit.getOnlinePlayers().size() >= 0 && barBroadcaster == -1)
         {
-            Bukkit.getScheduler().scheduleSyncRepeatingTask(this.main, () -> {
+            barBroadcaster = Bukkit.getScheduler().scheduleSyncRepeatingTask(this.main, () -> {
                 if(currMessage >= barMessages.size())
                     currMessage = 0;
                 bossBar.setTitle(barMessages.get(currMessage));
@@ -65,8 +65,9 @@ public class PlayerEvents implements Listener
         bossBar.removePlayer(e.getPlayer());
         if(Bukkit.getOnlinePlayers().size() <= 0)
         {
-
+            Bukkit.getScheduler().cancelTask(barBroadcaster);
         }
     }
+
 
 }
