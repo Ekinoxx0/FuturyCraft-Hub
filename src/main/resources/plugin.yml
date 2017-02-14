@@ -1,0 +1,6 @@
+name: FcLobby
+version: 0.0.1
+author: loucass003
+description: Hub de Fc
+main: fchub.Main
+depend: [FcApi]
