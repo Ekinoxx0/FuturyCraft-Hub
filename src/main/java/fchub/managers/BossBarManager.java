@@ -1,9 +1,7 @@
 package fchub.managers;
 
-import api.API;
 import api.packet.PacketReceivedEvent;
 import api.packet.server.BossBarMessagesPacket;
-import api.packet.server.RequestBossBarMessages;
 import fchub.Main;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,13 +14,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 
 /**
  * Created by loucass003 on 2/4/17.
@@ -54,7 +49,7 @@ public class BossBarManager
 		{
 			if (messages == null && Bukkit.getOnlinePlayers().size() == 1)
 			{
-				API.getInstance().getMessenger().sendPacket(new RequestBossBarMessages());
+				//API.getInstance().getMessenger().sendPacket(new RequestBossBarMessages());
 			}
 			bossBar.addPlayer(e.getPlayer());
 		}
